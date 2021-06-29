@@ -11,6 +11,13 @@ class Place(models.Model):
         blank=False,
     )
 
+    place_id = models.CharField(
+        verbose_name='Идентификатор места',
+        max_length=128,
+        blank=False,
+        unique=True,
+    )
+
     description_short = models.TextField(
         verbose_name='Короткое описание',
         blank=False,
