@@ -18,7 +18,7 @@ class Place(models.Model):
 
     description_long = models.TextField(
         verbose_name='Полное описание',
-        blank=False
+        blank=False,
     )
 
     coordinates_lng = models.FloatField(
@@ -38,3 +38,27 @@ class Place(models.Model):
         verbose_name = 'Интересное место города'
         verbose_name_plural = 'Интересные места города'
         ordering = ('title',)
+
+
+class Image(models.Model):
+    """Модель картинки места."""
+    place = models.ForeignKey(
+        to='Place',
+        on_delete=models.CASCADE,
+    )
+
+    order_num = models.IntegerField(
+        verbose_name="Порядковый номер",
+        blank=False,
+    )
+
+    image = models.ImageField(
+        verbose_name='Картинка',
+    )
+
+    def __str__(self):
+        return f'{self.order_num} {self.place}'
+
+    class Meta:
+        verbose_name = 'Картинка'
+        verbose_name_plural = 'Картинки'
