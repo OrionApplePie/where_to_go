@@ -20,8 +20,12 @@ from django.urls import path
 
 from where_to_go import views
 
-urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.index),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + \
-    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns = (
+    [
+        path("admin/", admin.site.urls),
+        path("", views.index),
+        path("places/<int:place_id>/", views.get_place_json),
+    ]
+    + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)
