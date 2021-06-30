@@ -1,4 +1,6 @@
+from django.core import validators
 from django.db import models
+from django.core.validators import MinValueValidator
 
 
 class Place(models.Model):
@@ -6,35 +8,35 @@ class Place(models.Model):
     Содержит описание и координаты для карты."""
 
     title = models.CharField(
-        verbose_name='Название',
+        verbose_name="Название",
         max_length=60,
         blank=False,
     )
 
     place_id = models.CharField(
-        verbose_name='Идентификатор места',
+        verbose_name="Идентификатор места",
         max_length=128,
         blank=False,
         unique=True,
     )
 
     description_short = models.TextField(
-        verbose_name='Короткое описание',
+        verbose_name="Короткое описание",
         blank=False,
     )
 
     description_long = models.TextField(
-        verbose_name='Полное описание',
+        verbose_name="Полное описание",
         blank=False,
     )
 
     coordinates_lng = models.FloatField(
-        verbose_name='Долгота',
+        verbose_name="Долгота",
         blank=False,
     )
 
     coordinates_lat = models.FloatField(
-        verbose_name='Широта',
+        verbose_name="Широта",
         blank=False,
     )
 
@@ -42,30 +44,34 @@ class Place(models.Model):
         return self.title
 
     class Meta:
-        verbose_name = 'Интересное место города'
-        verbose_name_plural = 'Интересные места города'
-        ordering = ('title',)
+        verbose_name = "Интересное место города"
+        verbose_name_plural = "Интересные места города"
+        ordering = ("title",)
 
 
 class Image(models.Model):
     """Модель картинки места."""
+
     place = models.ForeignKey(
-        to='Place',
+        to="Place",
         on_delete=models.CASCADE,
     )
 
     order_num = models.IntegerField(
         verbose_name="Порядковый номер",
         blank=False,
+        validators=[
+            MinValueValidator(1),
+        ],
     )
 
     image = models.ImageField(
-        verbose_name='Картинка',
+        verbose_name="Картинка",
     )
 
     def __str__(self):
-        return f'{self.order_num} {self.place}'
+        return f"{self.order_num} {self.place}"
 
     class Meta:
-        verbose_name = 'Картинка'
-        verbose_name_plural = 'Картинки'
+        verbose_name = "Картинка"
+        verbose_name_plural = "Картинки"
