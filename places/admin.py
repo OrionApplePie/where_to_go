@@ -1,12 +1,14 @@
 from django.contrib import admin
 from django.utils.html import format_html
 
+from adminsortable2.admin import SortableInlineAdminMixin
+
 from places.models import Place, Image
 
 IMAGE_MAX_HEIGHT = 200
 
 
-class ImageInline(admin.TabularInline):
+class ImageInline(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
 
     fields = ("image", "preview_image", "order_num")

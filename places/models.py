@@ -1,6 +1,4 @@
-from django.core import validators
 from django.db import models
-from django.core.validators import MinValueValidator
 
 
 class Place(models.Model):
@@ -57,12 +55,9 @@ class Image(models.Model):
         on_delete=models.CASCADE,
     )
 
-    order_num = models.IntegerField(
+    order_num = models.PositiveIntegerField(
         verbose_name="Порядковый номер",
         blank=False,
-        validators=[
-            MinValueValidator(1),
-        ],
     )
 
     image = models.ImageField(
@@ -75,3 +70,7 @@ class Image(models.Model):
     class Meta:
         verbose_name = "Картинка"
         verbose_name_plural = "Картинки"
+
+        ordering = [
+            "order_num",
+        ]
