@@ -6,6 +6,7 @@ from places.models import Image, Place
 
 def get_place_json(request, place_id):
     """Вью для загрузки данных мест города в формате JSON."""
+
     place_obj = get_object_or_404(Place, pk=place_id)
     images_obj_list = get_list_or_404(
         Image.objects.order_by("order_num"), place__pk=place_id

@@ -5,6 +5,7 @@ from places.models import Place
 
 def index(request):
     """Вью главной страницы."""
+
     places_geojson = {"type": "FeatureCollection", "features": []}
 
     places_objects = Place.objects.all()

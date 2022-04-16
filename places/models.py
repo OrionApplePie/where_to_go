@@ -61,9 +61,7 @@ class Image(models.Model):
         blank=False,
     )
 
-    image = models.ImageField(
-        verbose_name="Картинка",
-    )
+    image = models.ImageField(verbose_name="Картинка")
 
     def __str__(self):
         return f"{self.order_num} {self.place}"
