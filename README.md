@@ -27,8 +27,7 @@
 ## Демо сайт
 
 Пример работы сайта можно посмотреть здесь: https://orionapplepie.pythonanywhere.com/. Админка: https://orionapplepie.pythonanywhere.com/admin. Сайт доступен как с десктопов, так и на мобильных устройствах.
-Демо данные взяты отсюда: https://github.com/devmanorg/where-to-go-frontend/.
-
+Демо данные взяты отсюда: https://github.com/devmanorg/where-to-go-places.
 
 ## Добавление новых мест
 
