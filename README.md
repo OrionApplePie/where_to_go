@@ -26,7 +26,7 @@
 
 ## Демо сайт
 
-Пример работы сайта можно посмотреть здесь: https://orionapplepie.pythonanywhere.com/. Админка: https://orionapplepie.pythonanywhere.com/admin. Сайт доступен как с десктопов, так и на мобильных устройствах.
+Пример работы сайта: https://orionapplepie.pythonanywhere.com/. Админка: https://orionapplepie.pythonanywhere.com/admin. Сайт доступен как с десктопов, так и на мобильных устройствах.
 Демо данные взяты отсюда: https://github.com/devmanorg/where-to-go-places.
 
 ## Добавление новых мест
@@ -38,6 +38,13 @@
 
 ![](/assets/img/images_list.png "Страница добавления интересных мест")
 
+Также новые места можно добавить в автоматизированном режиме с помощью команды:
+
+```
+python manage.py load_place <url>
+```
+
+где url — адрес json данных представленных в определенном формате (пример данных: https://github.com/devmanorg/where-to-go-places).
 
 ## Цели проекта
 
