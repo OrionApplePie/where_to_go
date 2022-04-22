@@ -25,7 +25,7 @@ urlpatterns = (
     [
         path("admin/", admin.site.urls),
         path("", index, name="index"),
-        path("places/<int:place_id>/", get_place_json, name="get_place_json"),
+        path("places/<int:place_id>/", get_place_json, name="places-place-json"),
         path("tinymce/", include("tinymce.urls")),
     ]
     + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
