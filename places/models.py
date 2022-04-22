@@ -51,9 +51,7 @@ class Image(models.Model):
         on_delete=models.CASCADE,
     )
 
-    order_num = models.PositiveIntegerField(
-        verbose_name="Порядковый номер",
-    )
+    order_num = models.PositiveIntegerField(verbose_name="Порядковый номер", blank=True)
 
     image = models.ImageField(verbose_name="Картинка")
 
