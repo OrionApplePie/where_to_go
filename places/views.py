@@ -1,18 +1,16 @@
 from django.http import JsonResponse
-from django.shortcuts import get_list_or_404, get_object_or_404
+from django.shortcuts import get_object_or_404
 
-from places.models import Image, Place
+from places.models import Place
 
 
 def get_place_json(request, place_id):
     """Вью для загрузки данных мест города в формате JSON."""
 
-    place = get_object_or_404(Place, pk=place_id)
-    images_obj_list = get_list_or_404(
-        Image.objects.order_by("order_num"), place__pk=place_id
-    )
+    place = get_object_or_404(Place, id=place_id)
+    images = place.images.all().order_by("order_num")
 
-    images_urls = [obj.image.url for obj in images_obj_list]
+    images_urls = [obj.image.url for obj in images]
 
     obj_json_data = {
         "title": place.title,
