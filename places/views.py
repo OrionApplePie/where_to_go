@@ -15,10 +15,10 @@ def get_place_json(request, place_id):
     images_urls = [obj.image.url for obj in images_obj_list]
 
     obj_json_data = {
-        "title": f"{place.title}",
+        "title": place.title,
         "imgs": images_urls,
-        "description_short": f"{place.description_short}",
-        "description_long": f"{place.description_long}",
+        "description_short": place.description_short,
+        "description_long": place.description_long,
         "coordinates": {
             "lng": f"{place.coordinates_lng}",
             "lat": f"{place.coordinates_lat}",
