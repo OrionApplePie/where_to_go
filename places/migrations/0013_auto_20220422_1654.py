@@ -17,7 +17,9 @@ class Migration(migrations.Migration):
             name="slug",
             field=models.SlugField(
                 default=uuid.uuid4,
+                max_length=128,
                 unique=True,
+                verbose_name="Символьный идентификатор места",
             ),
         ),
     ]
