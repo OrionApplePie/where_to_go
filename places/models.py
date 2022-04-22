@@ -1,5 +1,6 @@
 from django.db import models
 from tinymce.models import HTMLField
+import uuid
 
 
 class Place(models.Model):
@@ -11,15 +12,14 @@ class Place(models.Model):
         max_length=60,
     )
 
-    place_id = models.CharField(
-        verbose_name="Идентификатор места",
+    slug = models.SlugField(
+        verbose_name="Символьный идентификатор места",
         max_length=128,
         unique=True,
+        default=uuid.uuid4,
     )
 
-    description_short = models.TextField(
-        verbose_name="Короткое описание",
-    )
+    description_short = models.TextField(verbose_name="Короткое описание", blank=True)
 
     description_long = HTMLField(
         verbose_name="Полное описание",
@@ -33,13 +33,13 @@ class Place(models.Model):
         verbose_name="Широта",
     )
 
-    def __str__(self):
-        return self.title
-
     class Meta:
         verbose_name = "Интересное место города"
         verbose_name_plural = "Интересные места города"
         ordering = ("title",)
+
+    def __str__(self):
+        return self.title
 
 
 class Image(models.Model):
@@ -56,9 +56,6 @@ class Image(models.Model):
 
     image = models.ImageField(verbose_name="Картинка")
 
-    def __str__(self):
-        return f"{self.order_num} {self.place}"
-
     class Meta:
         verbose_name = "Картинка"
         verbose_name_plural = "Картинки"
@@ -66,3 +63,6 @@ class Image(models.Model):
         ordering = [
             "order_num",
         ]
+
+    def __str__(self):
+        return f"{self.order_num} {self.place}"

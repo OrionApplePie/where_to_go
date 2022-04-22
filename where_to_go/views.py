@@ -20,7 +20,7 @@ def index(request):
                 },
                 "properties": {
                     "title": place.title,
-                    "placeId": place.place_id,
+                    "placeId": place.slug,
                     "detailsUrl": f"places/{place.pk}/",
                 },
             }

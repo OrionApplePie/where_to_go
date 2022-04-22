@@ -4,8 +4,9 @@ import requests
 from django.core.files.base import ContentFile
 from django.core.management.base import BaseCommand, CommandError
 from places.models import Image, Place
-from pytils import translit
 from requests.compat import urlparse
+
+from places.utils import slugify
 
 
 def save_place_images(place, image_url, order_num):
@@ -33,14 +34,12 @@ class Command(BaseCommand):
                 )
                 continue
 
-            place_id = translit.slugify(resp_json["title"])[:128].replace("-", "_")
-
             place, created = Place.objects.get_or_create(
                 title=resp_json["title"],
                 coordinates_lng=resp_json["coordinates"]["lng"],
                 coordinates_lat=resp_json["coordinates"]["lat"],
                 defaults={
-                    "place_id": place_id,
+                    "slug": slugify(resp_json["title"]),
                     "description_short": resp_json["description_short"],
                     "description_long": resp_json["description_long"],
                 },
