@@ -8,9 +8,9 @@ def index(request):
 
     places_geojson = {"type": "FeatureCollection", "features": []}
 
-    places_objects = Place.objects.all()
+    places = Place.objects.all()
 
-    for place in places_objects:
+    for place in places:
         places_geojson["features"].append(
             {
                 "type": "Feature",

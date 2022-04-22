@@ -35,7 +35,7 @@ class Command(BaseCommand):
 
             place_id = translit.slugify(resp_json["title"])[:128].replace("-", "_")
 
-            place_obj, created = Place.objects.get_or_create(
+            place, created = Place.objects.get_or_create(
                 title=resp_json["title"],
                 coordinates_lng=resp_json["coordinates"]["lng"],
                 coordinates_lat=resp_json["coordinates"]["lat"],
@@ -48,7 +48,7 @@ class Command(BaseCommand):
 
             if created:
                 for i, image_url in enumerate(resp_json["imgs"], 1):
-                    save_place_images(place_obj, image_url=image_url, order_num=i)
+                    save_place_images(place, image_url=image_url, order_num=i)
                     self.stdout.write(
                         self.style.SUCCESS(
                             "Image %i for place %s saved" % (i, resp_json["title"])

@@ -9,34 +9,28 @@ class Place(models.Model):
     title = models.CharField(
         verbose_name="Название",
         max_length=60,
-        blank=False,
     )
 
     place_id = models.CharField(
         verbose_name="Идентификатор места",
         max_length=128,
-        blank=False,
         unique=True,
     )
 
     description_short = models.TextField(
         verbose_name="Короткое описание",
-        blank=False,
     )
 
     description_long = HTMLField(
         verbose_name="Полное описание",
-        blank=False,
     )
 
     coordinates_lng = models.FloatField(
         verbose_name="Долгота",
-        blank=False,
     )
 
     coordinates_lat = models.FloatField(
         verbose_name="Широта",
-        blank=False,
     )
 
     def __str__(self):
@@ -58,7 +52,6 @@ class Image(models.Model):
 
     order_num = models.PositiveIntegerField(
         verbose_name="Порядковый номер",
-        blank=False,
     )
 
     image = models.ImageField(verbose_name="Картинка")
