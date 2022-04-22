@@ -21,9 +21,7 @@ class Place(models.Model):
 
     description_short = models.TextField(verbose_name="Короткое описание", blank=True)
 
-    description_long = HTMLField(
-        verbose_name="Полное описание",
-    )
+    description_long = HTMLField(verbose_name="Полное описание", blank=True)
 
     coordinates_lng = models.FloatField(
         verbose_name="Долгота",
@@ -49,6 +47,7 @@ class Image(models.Model):
         to="Place",
         related_name="images",
         on_delete=models.CASCADE,
+        verbose_name="Место",
     )
 
     order_num = models.PositiveIntegerField(verbose_name="Порядковый номер", blank=True)
