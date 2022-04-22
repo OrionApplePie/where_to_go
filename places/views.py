@@ -10,9 +10,9 @@ def get_place_json(request, place_id):
     place = get_object_or_404(Place, id=place_id)
     images = place.images.all().order_by("order_num")
 
-    images_urls = [obj.image.url for obj in images]
+    images_urls = [image.image.url for image in images]
 
-    obj_json_data = {
+    place_context = {
         "title": place.title,
         "imgs": images_urls,
         "description_short": place.description_short,
@@ -24,7 +24,7 @@ def get_place_json(request, place_id):
     }
 
     return JsonResponse(
-        obj_json_data,
+        place_context,
         safe=False,
         json_dumps_params={"ensure_ascii": False, "indent": 2},
     )
